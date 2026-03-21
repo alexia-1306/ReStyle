@@ -50,6 +50,12 @@ body {
     border-radius: 0;
 }
 
+.hero-title-main{
+    color: black;
+    font-weight: bold;
+    font-size: 50px;
+}
+
 
 
 .hero-description {
@@ -70,7 +76,7 @@ body {
 .hero-small-button {
     display: inline-block;
     background: #e88ab0;
-    color: white;
+    color: honeydew;
     text-decoration: none;
     font-size: 14px;
     font-weight: 700;
@@ -111,38 +117,11 @@ body {
     display: block;
 }
 
-.background-photos1 {
-    position: relative;
-}
-
-.background-photos1::after{
-    content: "";
-    position: absolute;
+.background-photo1 {
     background-image: url("/static/images/fashion-photo.jpeg");
-    background-size: contain;
-    background-position: right bottom;
-    opacity: 0.5;
-    right: 150px;
-    bottom: 20px;
-    width: 250px;
-    height: 250px;
-}
-
-.background-photos2 {
-    position: fixed;
-    overflow: hidden;
-}
-
-.background-photos2::after{
-    content: "";
-    position: fixed;
-    background-image: url("/static/images/photo2.png");
-    background-size: contain;
-    background-position: 1px 0,30px;
-    opacity: 0.9;
-    left: 0;
-    bottom: 0;
-    width: 450px;
-    height: 200px;
-    top: 222px;
+    background-color: red;
+    background-position: center;
+    height: 500px;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
