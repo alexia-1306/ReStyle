@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>ReStyle</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Acasa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Produse
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Haine</a></li>
+                        <li><a class="dropdown-item" href="#">Incaltaminte</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Contul meu
+                    </a>
+                    <ul class="dropdown-menu">
+                        {% if request.user.is_authenticated %}
+
+                        {% else %}
+                            <li><a class="dropdown-item" href="#">Autentificare</a></li>
+                            <li><a class="dropdown-item" href="#">Inregistrare</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+{#<nav class="navbar">#}
+{#    <div class="nav-left">#}
+{##}
+{#        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">#}
+{#            <a class="hero-label" href="/">ReStyle</a>#}
+{#             <span class="navbar-toggler-icon"></span>#}
+{#        </button>#}
+{##}
+{#        <div>#}
+{#        <ul class="nav-links">#}
+{#            <li><a href="{% url 'home' %}">Acasa</a></li>#}
+{##}
+{#            <li class="dropdown">#}
+{#                <a href="#" data-bs-toggle="dropdown">Produse</a>#}
+{#                <ul class="submenu">#}
+{#                    <li><a href="#">Haine</a></li>#}
+{#                        <li><a href="#">Incaltaminte</a></li>#}
+{#                        <li><a href="#">Accesorii si bijuterii</a></li>#}
+{#                        <li><a href="#">Electronice</a></li>#}
+{#                        <li><a href="#">Casa</a></li>#}
+{#                </ul>#}
+{#            </li>#}
+{#            <li><a href="#">Despre</a></li>#}
+{##}
+{#        </ul>#}
+{#    </div>#}
+{#    </div>#}
+{##}
+{#    <div class="nav-right">#}
+{#        <span class="nav-info">Livrare rapida | Suport 24/7</span>#}
+{#        <a class="cart-btn" href="#">Cos</a>#}
+{#    </div>#}
+{##}
+{#    <div class="nav-right">#}
+{#    {% if user.is_authenticated %} <!-- daca userul este logat -->#}
+{#    <span class="nav-user"></span>#}
+{#    <form action="{% url 'logout' %}" method="post" style="display: inline;"> <!-- formular de logout -->#}
+{#        {% csrf_token %}#}
+{#        <button class="navbar-logout" >Delogare</button> <!-- buton de logout-->#}
+{#    </form>#}
+{##}
+{#    {% else %} <!-- daca userul nu este logat -->#}
+{#    <a href="{% url 'login' %}">Autentificare</a> <!-- link de login -->#}
+{#    <a href="{% url 'register' %}">Înregistrare</a> <!-- link de inregistrare -->#}
+{#    {% endif %}#}
+{#    </div>#}
+{##}
+{#</nav>#}
+
+<hr> <!-- linie separator -->
+{% block content %}
+{% endblock %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

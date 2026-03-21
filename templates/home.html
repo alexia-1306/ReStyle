@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %} <!-- Zona in care va fi injectata in base.html -->
+<section class="hero-editorial">
+
+<h1 class="hero-background-word">ReStyle</h1>
+
+    {% if user.is_authenticated %} <!-- Conditia sa fie autentificat -->
+    <p class="hero-title-main"> Bun venit, {{ user.username }}.</p> <!--afiseaza numele daca este autentificat-->
+        <p class="hero-description">
+            <p class="hero-label">Redefinește-ți garderoba!</p>
+            <p class="hero-label">Buy. Sell. ReStyle.</p>
+
+        <a href="#" class="hero-small-button">Creează anunț</a>
+        <div class="background-photos1"></div>
+        <div class="background-photos2"></div>
+
+
+
+    {% else %} <!--daca nu este logat-->
+        <p>Nu esti autentificat.</p> <!--Mesajul-->
+    {% endif %}
+</section>
+{% endblock %}
