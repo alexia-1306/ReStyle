@@ -10,7 +10,7 @@ def homepage_view(request):
 
 def add_product(request):
     if request.method == 'POST':
-        form= AdForm(request.POST)
+        form= AdForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('ad_list')

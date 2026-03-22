@@ -11,12 +11,13 @@ class Category(models.Model):
 
 class Ad(models.Model):
     name = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='images/')
     description = models.TextField()
     price = models.DecimalField(decimal_places=2, max_digits=10)
     city = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=255)
     post_date = models.DateTimeField(default=timezone.now)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
 
 
     def __str__(self):

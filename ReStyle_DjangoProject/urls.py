@@ -17,6 +17,8 @@ Including another URLconf
 from django.shortcuts import render #trimite html
 from django.contrib import admin #importa panoul admin django
 from django.urls import path, include #path = definire rute, include = includem urls
+from django.conf.urls.static import static
+from django.conf import settings
 
 from products.views import add_product
 
@@ -30,5 +32,7 @@ urlpatterns = [
     path("users/", include("users.urls")),
     path("", home, name='home') ,#leaga ruta de functia home
     path('', include('products.urls')),
-
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

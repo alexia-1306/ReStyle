@@ -8,6 +8,7 @@ class AdForm(forms.ModelForm):
         exclude = ('post_date',)
         labels = {
             'name': 'Name',
+            'image': 'Image',
             'description': 'Description',
             'price': 'Price',
             'city': 'City',
