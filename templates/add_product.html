@@ -1,16 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+{% extends 'base.html' %}
+{% load static %}
+{% block content %} <!-- Zona in care va fi injectata in base.html -->
+<section class="add-ad">
     <title>Adauga anunt</title>
-</head>
-<body>
-<h1>Adauga anunt.</h1>  {% comment %}TITLUL PAGINII{% endcomment %}
+
+<h1 class="hero-title-main">Adaugare anunt:</h1>  {% comment %}TITLUL PAGINII{% endcomment %}
+<h1 class="hero-background-word">ReStyle</h1>
 <form method="post" enctype="multipart/form-data"> {% comment %}DATELE VOR FI TRIMITSE PRINT POST (POSTARE){% endcomment %}
     {% csrf_token %} {% comment %}SECURITATE{% endcomment %}
     {{ form.as_p }} {% comment %}AFISEAZA TOATE CAMPURILE FORMULARULUI, as_p INSEAMNA CA
     FIECARE CAMP O SA FIE PUN INTR UN PARAGRAF{% endcomment %}
     <button type="submit">Salvare</button>
 </form>
-</body>
-</html>
+</section>
+{% endblock %}
