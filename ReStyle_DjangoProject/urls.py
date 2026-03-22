@@ -17,12 +17,18 @@ Including another URLconf
 from django.shortcuts import render #trimite html
 from django.contrib import admin #importa panoul admin django
 from django.urls import path, include #path = definire rute, include = includem urls
+
+from products.views import add_product
+
+
 # from django.http import HttpResponse #afisare text direct in browser
 
 def home(request):
     return render(request, 'home.html')
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("users/", include("users.urls")),
+    path("", home, name='home') ,#leaga ruta de functia home
     path('', include('products.urls')),
-    path("", home, name='home') #leaga ruta de functia home
+
 ]

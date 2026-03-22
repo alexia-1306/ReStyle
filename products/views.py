@@ -8,12 +8,12 @@ from products.forms import AdForm
 def homepage_view(request):
     return render(request, 'home.html')
 
-def add_product_view(request):
+def add_product(request):
     if request.method == 'POST':
         form= AdForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('ad_list')
-        else:
-            form = AdForm()
-    return render(request, 'add_ad.html', {'form': form})
+    else:
+        form = AdForm()
+    return render(request, 'add_product.html', {'form': form})

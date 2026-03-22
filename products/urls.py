@@ -1,8 +1,6 @@
 from django.urls import path, include
 from products import views
-from products.views import add_product_view
-
+from products.views import add_product
 urlpatterns = [
-    path("users/", include("users.urls")),
-    path("/add-ad/", add_product_view, name="add_ad"),
+    path("add-ad/", add_product, name="add_ad"),
 ]
