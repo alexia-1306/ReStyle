@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
 from products.forms import AdForm
+from .models import Ad
 
 
 # Create your views here.
@@ -17,3 +18,7 @@ def add_product(request):
     else:
         form = AdForm()
     return render(request, 'add_product.html', {'form': form})
+
+def ad_list(request):
+    ads = Ad.objects.all().order_by('-post_date')
+    return render(request, 'ad_list.html', {'ads': ads})
