@@ -5,9 +5,12 @@ from django.utils import timezone
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
-
+    slug = models.SlugField(max_length=255, unique=True)
+    parent_category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.CASCADE)
     def __str__(self):
         return f'{self.name}'
+
+
 
 class Ad(models.Model):
     name = models.CharField(max_length=255)
@@ -17,6 +20,7 @@ class Ad(models.Model):
     city = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=255)
     post_date = models.DateTimeField(default=timezone.now)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
 
 
