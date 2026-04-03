@@ -21,37 +21,25 @@
                 <li class="nav-item">
                     <a class="hero-small-button active" aria-current="page" href="#">Acasa</a>
                 </li>
+                {% for category in categories %}
 
-                <li class="nav-item dropdown">
-                    <a class="hero-small-button dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        Produse
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="hero-small-button dropdown-toggle" href="{% url 'ad_category' 'haine'%}">Haine</a>
-                            <ul class="dropdown-submenu">
-                                <li><a href="#">Geci</a></li>
-                                <li><a href="#">Bluze si tricouri</a></li>
-                                <li><a href="#">Pantaloni si blugi</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="hero-small-button dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            {{ category.name }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% for subcategory in category.subcategories %}
+                                <li>
+                                    <a class="hero-small-button "
+                                       href="{% url 'ad_category' subcategory.slug %}">{{ subcategory.name }}</a>
+                                </li>
+                            {% endfor %}
 
-                            </ul>
-                        </li>
+                        </ul>
+                    </li>
+                {% endfor %}
 
-                        <li><a class="hero-small-button dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">Incaltaminte</a>
-                            <ul class="dropdown-submenu">
-                                <li><a href="#">Adidasi</a></li>
-                                <li><a href="#">Pantofi eleganti cu toc</a></li>
-                                <li><a href="#">Sandale</a></li>
-                                <li><a href="#">Incaltaminte barbati</a></li>
-
-                            </ul>
-                        </li>
-                        <li><a class="hero-small-button dropdown-toggle" href="{% url 'ad_category' 'accesorii-bijuterii' %}">Accesorii si bijuterii</a></li>
-
-                    </ul>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="hero-small-button dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">

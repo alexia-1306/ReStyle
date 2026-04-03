@@ -7,6 +7,9 @@ class Category(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True)
     parent_category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.CASCADE)
+
+    def subcategories(self):
+        return Category.objects.filter(parent_category=self)
     def __str__(self):
         return f'{self.name}'
 
