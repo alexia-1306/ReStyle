@@ -3,16 +3,18 @@
 {% block content %}
     <h1>Anunturi</h1>
 
-    {% for ad in ads %}
-    <div>
-    <h2>{{ ad.name }}</h2>
-    <p>{{ ad.price }}</p>
-    <p>{{ ad.city }}</p>
-    {% if ad.image %}
-    <img src="{{ add.image.url }}" alt="{{ ad.name }}" width="200">
-    {% endif %}
-    </div>
-    {% empty %}
-    <p>Nu exista anunturi.</p>
+    {% for product in products %}
+        <div class="card" style="width: 18rem;">
+
+        {% if ad.image %}
+            <img src="{{ product.image.url }}" class="card-img-top" alt={{ ad.name }}>
+        {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ product.image.url }}</h5>
+                <p class="card-text">{{ product.price }} RON</p>
+                <p class="card-text">{{ product.city}}</p>
+                <a href="#" class="btn btn-primary">Vezi anuntul</a>
+            </div>
+        </div>
     {% endfor %}
 {% endblock %}
