@@ -5,5 +5,5 @@ urlpatterns = [
     path("add-ad/", add_product, name="add_ad"),
     path("ads/", views.ad_list, name="ad_list"),
     path('ads/category/<slug:category>/', views.ad_category, name="ad_category"),
-#     path('ads/subcategory/<slug:slug>/', views.ad_subcategory, name="ad_subcategory"),
+    path('favorites/<int:ad_id>', views.favorites, name="favorites"),
     ]

@@ -1,10 +1,11 @@
 from gc import get_objects
 
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
 from products.forms import AdForm
-from .models import Ad, Category
+from .models import Ad, Category, Favorites
 
 
 # Create your views here.
@@ -29,8 +30,11 @@ def ad_category(request, category):
     category = Category.objects.get(slug=category)
     ads = Ad.objects.filter(category=category).order_by('-post_date')
     return render(request, 'ad_list.html', {'ads': ads, 'category': category})
-
-# def ad_subcategory(request, subcategory):
-#     subcategory = SubCategory.objects.get(slug=subcategory)
-#     ads = Ad.objects.filter(subcategory=subcategory).order_by('-post_date')
-#     return render(request, 'ad_list.html', {'ads': ads, 'subcategory': subcategory})
+@login_required(login_url='login')
+def favorites(request, ad_id):
+    fav, create = Favorites.objects.get_or_create(user=request.user, ad=Ad.objects.get(id=ad_id))
+    if create:
+        pass
+    else:
+        fav.delete()
+    return redirect('ad_list')

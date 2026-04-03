@@ -25,8 +25,9 @@ class Ad(models.Model):
     post_date = models.DateTimeField(default=timezone.now)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
-
-
     def __str__(self):
         return f'{self.name}'
 
+class Favorites(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    ad = models.ForeignKey(Ad, on_delete=models.CASCADE)
