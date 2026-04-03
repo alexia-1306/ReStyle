@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Anunturi</h1>
+
+    {% for fav in favs %}
+        <div class="card" style="width: 18rem;">
+
+        {% if fav.ad.image %}
+            <img src="{{ fav.ad.image.url }}" class="card-img-top" alt={{ fav.ad.image }}>
+        {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ fav.ad.name }}</h5>
+                <p class="card-text">{{ fav.ad.price }} RON</p>
+                <p class="card-text">{{ fav.ad.city}}</p>
+                <a href="#" class="btn btn-primary">Vezi anuntul</a>
+
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

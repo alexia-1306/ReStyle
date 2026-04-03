@@ -38,3 +38,7 @@ def favorites(request, ad_id):
     else:
         fav.delete()
     return redirect('ad_list')
+
+def fav_list(request):
+    favs = Favorites.objects.filter(user=request.user)
+    return render(request, 'favorites_list.html', {'favs': favs})
