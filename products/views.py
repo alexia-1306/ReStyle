@@ -79,3 +79,12 @@ def checkout(request):
         return redirect('cart_detail')
 
     return render(request, 'checkout.html', {'cart_details': cart_details})
+
+def search(request):
+    query = request.GET.get('q')
+    if query:
+        product_search = Ad.objects.filter(name__icontains=query)
+    else:
+        product_search = Ad.objects.none()
+
+    return render(request, 'search.html', {'product_search': product_search})
