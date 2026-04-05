@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
 from products.forms import AdForm
-from .models import Ad, Category, Favorites, Cart, CartItem
+from .models import Ad, Category, Favorites, Cart, CartItem, Order
 
 
 # Create your views here.
@@ -65,9 +65,17 @@ def remove_from_cart(request, ad_id):
     return redirect('cart_detail')
 
 def cart_detail(request):
-    cart_details = Cart.objects.get(user=request.user, status='open')
+    cart_details, created = Cart.objects.get_or_create(user=request.user, status='open')
     items = CartItem.objects.filter(cart=cart_details)
     return render(request, 'cart.html', {'cart_details': cart_details, 'items': items})
+
+
 def checkout(request):
     cart_details = Cart.objects.get(user=request.user, status='open')
+    if request.method == 'POST':
+        Order.objects.create(user=request.user, cart=cart_details, adress=request.POST.get('adress'))
+        cart_details.status = 'closed'
+        cart_details.save()
+        return redirect('cart_detail')
+
     return render(request, 'checkout.html', {'cart_details': cart_details})

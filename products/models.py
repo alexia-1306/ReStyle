@@ -63,3 +63,14 @@ class CartItem(models.Model):
 
     def __str__(self):
         return f'{self.quantity} X {self.product} in cart {self.cart}'
+
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    status = models.CharField(max_length=255, choices=(
+        ('pending', 'Plasata'),
+        ('in process', 'In curs de livrare'),
+        ('delivered', 'Livrata'),
+        ('canceled', 'Anulata'),))
+    date = models.DateTimeField(default=timezone.now)
+    adress = models.CharField(max_length=255)
