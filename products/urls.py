@@ -7,4 +7,5 @@ urlpatterns = [
     path('ads/category/<slug:category>/', views.ad_category, name="ad_category"),
     path('favorites/<int:ad_id>', views.favorites, name="favorites"),
     path('favorites/',views.fav_list, name="fav_list" ),
+    path('ad/<int:ad_id>/',views.ad_detail, name="ad_detail"),
     ]

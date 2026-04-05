@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if ad_details.image %}
+        <img src="{{ ad_details.image.url }}" class="card-img-top" alt={{ ad_details.image }}>
+    {% endif %}
+    <h1>{{ ad_details.name }}</h1>
+    <p>{{ ad_details.description }}</p>
+    <p>Pret:{{ ad_details.price }} RON</p>
+    <p>Oras: {{ ad_details.city }}</p>
+    <p>Data postarii: {{ ad_details.post_date }}</p>
+    <p>Numar telefon: {{ ad_details.phone_number }}</p>
+    <a href="#" class="btn btn-primary">Adauga in cos</a>
+{% endblock %}

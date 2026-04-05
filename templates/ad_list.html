@@ -13,7 +13,7 @@
                 <h5 class="card-title">{{ ad.image.url }}</h5>
                 <p class="card-text">{{ ad.price }} RON</p>
                 <p class="card-text">{{ ad.city}}</p>
-                <a href="#" class="btn btn-primary">Vezi anuntul</a>
+                <a href="{% url 'ad_detail' ad.id %}" class="btn btn-primary">Vezi anuntul</a>
                 <a href="{% url 'favorites' ad.id %}" class="btn btn-primary">
                     <i class="bi bi-heart">Favorite</i>
                 </a>
