@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
 from products.forms import AdForm
-from .models import Ad, Category, Favorites
+from .models import Ad, Category, Favorites, Cart, CartItem
 
 
 # Create your views here.
@@ -48,3 +48,26 @@ def favorites(request, ad_id):
 def fav_list(request):
     favs = Favorites.objects.filter(user=request.user)
     return render(request, 'favorites_list.html', {'favs': favs})
+@login_required(login_url='login')
+def add_to_cart(request, ad_id):
+    cart, created = Cart.objects.get_or_create(status='open', user=request.user)
+    cart_item, created = CartItem.objects.get_or_create(cart=cart, product=Ad.objects.get(id=ad_id))
+    cart_item.quantity += 1
+    cart_item.save()
+    return redirect('ad_list')
+
+
+def remove_from_cart(request, ad_id):
+    cart = Cart.objects.get(user=request.user, status='open')
+    cart_item = CartItem.objects.get(cart=cart, product=Ad.objects.get(id=ad_id))
+    cart_item.delete()
+
+    return redirect('cart_detail')
+
+def cart_detail(request):
+    cart_details = Cart.objects.get(user=request.user, status='open')
+    items = CartItem.objects.filter(cart=cart_details)
+    return render(request, 'cart.html', {'cart_details': cart_details, 'items': items})
+def checkout(request):
+    cart_details = Cart.objects.get(user=request.user, status='open')
+    return render(request, 'checkout.html', {'cart_details': cart_details})

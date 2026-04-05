@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Produse adaugate</h1>
+    {% for item in items %}
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ item.product.image.url }}</h5>
+                <p class="card-text">{{ item.product.price }} RON</p>
+                <p>{{ item.quantity }}</p>
+        <a href="{% url 'remove_from_cart' item.product.id %}" class="btn btn-primary">Elimina din cos</a>
+            </div>
+        </div>
+    {% endfor %}
+    {{ cart.total }}
+{% endblock %}

@@ -8,4 +8,7 @@ urlpatterns = [
     path('favorites/<int:ad_id>', views.favorites, name="favorites"),
     path('favorites/',views.fav_list, name="fav_list" ),
     path('ad/<int:ad_id>/',views.ad_detail, name="ad_detail"),
+    path('cart/', views.cart_detail, name="cart_detail"),
+    path('cart/add/<int:ad_id>/', views.add_to_cart, name="add_to_cart"),
+    path('cart/remove/<int:ad_id>/', views.remove_from_cart, name="remove_from_cart"),
     ]

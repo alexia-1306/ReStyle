@@ -31,3 +31,35 @@ class Ad(models.Model):
 class Favorites(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     ad = models.ForeignKey(Ad, on_delete=models.CASCADE)
+
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    status = models.CharField(max_length=255, choices=(
+        ('open', 'Deschis'),
+        ('closed', 'Inchis'),
+        ('paid', 'Platit'),
+        ('retour', 'Retur'),
+    ))
+
+    # def cart_items(self):
+    #     return CartItem.objects.filter(cart=self)
+
+    def total(self):
+        total = 0
+        for item in CartItem.objects.filter(cart=self):
+            total += item.total()
+        return total
+
+    def __str__(self):
+        return f'{self.status} cart belongs to {self.user}'
+
+class CartItem(models.Model):
+    product = models.ForeignKey(Ad, on_delete=models.CASCADE)
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=0)
+
+    def total(self):
+        return self.quantity * self.product.price
+
+    def __str__(self):
+        return f'{self.quantity} X {self.product} in cart {self.cart}'
