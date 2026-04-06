@@ -1,11 +1,13 @@
 from gc import get_objects
+from pyexpat.errors import messages
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
 from products.forms import AdForm
-from .models import Ad, Category, Favorites, Cart, CartItem, Order
+from .models import Ad, Category, Favorites, Cart, CartItem, Order, Messages
 
 
 # Create your views here.
@@ -88,3 +90,19 @@ def search(request):
         product_search = Ad.objects.none()
 
     return render(request, 'search.html', {'product_search': product_search})
+
+def send_message(request, ad_id):
+    ad = Ad.objects.get(id=ad_id)
+    message = request.POST.get('message')
+    Messages.objects.create(
+        sender=request.user,
+        recipient=ad.user,
+        message=message,
+        ad_connection=ad
+    )
+    return redirect('ad_detail', ad_id=ad_id)
+
+
+def inbox(request):
+    recived_messages= Messages.objects.filter(recipient=request.user)
+    return render(request, 'inbox.html', {'recived_messages': recived_messages})

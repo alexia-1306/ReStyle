@@ -10,5 +10,10 @@
     <p>Oras: {{ ad_details.city }}</p>
     <p>Data postarii: {{ ad_details.post_date }}</p>
     <p>Numar telefon: {{ ad_details.phone_number }}</p>
+    <form method="post" action="{% url 'send_message' ad_details.id %}">
+    {% csrf_token %}
+    <textarea name="message" placeholder="Scrie un mesaj.." ></textarea>
+    <button type="submit">Trimite mesajul</button>
+    </form>
     <a href="{% url 'add_to_cart' ad_details.id %}" class="btn btn-primary">Adauga in cos</a>
 {% endblock %}
