@@ -1,25 +1,101 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %} <!-- Zona in care va fi injectata in base.html -->
-<section class="hero-editorial">
+<style>
+    body {
+        margin: 0;
+        font-family: 'Helvetica Neue', sans-serif;
+        background: #fffdf7;
+        color: #222;
+        overflow-x: hidden;
+    }
 
-<h1 class="hero-background-word">ReStyle</h1>
+    .title-main {
+        font-size: 64px;
+        font-weight: 800;
+        text-align: center;
+        margin-top: 80px;
+        color: #ff4fa3;
+    }
+
+    .background-word {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 180px;
+        font-weight: 900;
+        color: rgba(255, 221, 87, 0.25);
+        /* lemon transparent */
+        z-index: 0;
+    }
+
+    .text_homepage {
+        text-align: center;
+        font-size: 18px;
+        color: #666;
+        max-width: 600px;
+        margin: 20px auto;
+    }
+
+    .create-ad-button {
+        display: block;
+        margin: 30px auto;
+        padding: 14px 32px;
+        border: none;
+        border-radius: 30px;
+        background: linear-gradient(135deg, #ffe066, #ff4fa3);
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .create-ad-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(255, 79, 163, 0.3);
+    }
+
+    .photo {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+
+    }
+
+    .photo img {
+        width: 220px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 20px;
+        transition: 0.3s;
+        border: 3px solid #ffe066;
+    }
+
+    .photo img:hover {
+        transform: scale(1.07);
+        border-color: #ff4fa3;
+    }
+</style>
+
+<section class="main-background">
+
+    <h1 class="background-word">ReStyle</h1>
 
     {% if user.is_authenticated %} <!-- Conditia sa fie autentificat -->
-    <p class="hero-title-main"> Bun venit, {{ user.username }}.</p> <!--afiseaza numele daca este autentificat-->
-        <p class="hero-description">
-            <p class="hero-label">Redefinește-ți garderoba!</p>
-            <p class="hero-label">Buy. Sell. ReStyle.</p>
+    <p class="title-main"> Bun venit, {{ user.username }}.</p> <!--afiseaza numele daca este autentificat-->
+    <p class="text_homepage">Redefinește-ți garderoba!</p>
+    <p class="text_homepage">Buy. Sell. ReStyle.</p>
+    <div class="d-flex justify-content-end">
+        <a href="{% url 'add_ad' %}" class="create-ad-button">Creează anunț</a>
+    </div>
 
-        <a href="{% url 'add_ad' %}" class="hero-small-button">Creează anunț</a>
-        <div class="background-photo1">
-</div>
 
 
 
 
     {% else %} <!--daca nu este logat-->
-        <p>Nu esti autentificat.</p> <!--Mesajul-->
+    <p>Nu esti autentificat.</p> <!--Mesajul-->
     {% endif %}
 </section>
 {% endblock %}
