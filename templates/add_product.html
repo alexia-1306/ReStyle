@@ -90,4 +90,85 @@
             }
         }
     </script>
+
+    <style>
+        .add-ad {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background: linear-gradient(135deg, #fff8e1, #ffe4f0);
+    border-radius: 20px;
+    border: 2px solid#ffe066;
+    box-shadow: 0 4px 20px rgba(255, 79, 163, 0.15);
+        }
+
+    form p {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;}
+
+    form label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+form input,
+form select,
+form textarea {
+    padding: 10px;
+    border: 2px solid #ffe066;
+    border-radius: 10px;
+    background: white;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;}
+
+    form button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #ffe066, pink);
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+#permissions-button,
+#start-button {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #ffe066, pink);
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 10px 5px;
+}
+
+.camera {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+}
+
+#video {
+    border-radius: 10px;
+    border: 2px solid #ffe066;
+}
+
+#photo {
+    border-radius: 10px;
+    border: 2px solid #ff4fa3;
+    margin-top: 10px;
+    max-width: 100%;
+}
+
+#canvas {
+    display: none;}
+    </style>
 {% endblock %}
