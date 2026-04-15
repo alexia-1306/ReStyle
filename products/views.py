@@ -3,7 +3,7 @@ from pyexpat.errors import messages
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 
 from products.forms import AdForm
@@ -40,16 +40,16 @@ def ad_detail(request, ad_id):
 
 @login_required(login_url='login')
 def favorites(request, ad_id):
+    ad = get_object_or_404(Ad, id = ad_id)
     fav, create = Favorites.objects.get_or_create(user=request.user, ad=Ad.objects.get(id=ad_id))
-    if create:
-        pass
-    else:
+    if not create:
         fav.delete()
     return redirect('ad_list')
-
+@login_required(login_url='login')
 def fav_list(request):
-    favs = Favorites.objects.filter(user=request.user)
+    favs = Favorites.objects.filter(user=request.user, ad__isnull = False).select_related('ad')
     return render(request, 'favorites_list.html', {'favs': favs})
+
 @login_required(login_url='login')
 def add_to_cart(request, ad_id):
     cart, created = Cart.objects.get_or_create(status='open', user=request.user)
