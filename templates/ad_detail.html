@@ -1,19 +1,155 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% if ad_details.image %}
-        <img src="{{ ad_details.image.url }}" class="card-img-top" alt={{ ad_details.image }}>
-    {% endif %}
-    <h1>{{ ad_details.name }}</h1>
-    <p>{{ ad_details.description }}</p>
-    <p>Pret:{{ ad_details.price }} RON</p>
-    <p>Oras: {{ ad_details.city }}</p>
-    <p>Data postarii: {{ ad_details.post_date }}</p>
-    <p>Numar telefon: {{ ad_details.phone_number }}</p>
-    <form method="post" action="{% url 'send_message' ad_details.id %}">
-    {% csrf_token %}
-    <textarea name="message" placeholder="Scrie un mesaj.." ></textarea>
-    <button type="submit">Trimite mesajul</button>
-    </form>
-    <a href="{% url 'add_to_cart' ad_details.id %}" class="btn btn-primary">Adauga in cos</a>
+<style>
+    .detail-page {
+        background-color: #fffdf8;
+        padding: 40px;
+        min-height: 100vh;
+    }
+
+    .detail-card {
+        background-color: white;
+        border: 2px solid #ffe8a3;
+        border-radius: 24px;
+        padding: 30px;
+        max-width: 900px;
+        margin: 0 auto;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+    }
+
+    .detail-card:hover {
+        border-color: #ffc8dd;
+    }
+
+    .price {
+        display: inline-block;
+        background-color: #fff1b8;
+        padding: 8px 14px;
+        border-radius: 12px;
+        font-size: 18px;
+        font-weight: 700;
+        color: #444;
+        margin-bottom: 20px;
+    }
+    .price:hover{
+        background-color: #ffe48c;
+    }
+
+    .message {
+        background-color: #ffd6e7;
+        border: none;
+        border-radius: 12px;
+        padding: 10px 16px;
+    }
+
+    .message:hover {
+        background-color: #ffc2db;
+    }
+
+    .btn-add-cart {
+        display: inline-block;
+        background-color: #fff1b8;
+        color: black;
+        text-decoration: none;
+        border: none;
+        border-radius: 12px;
+        padding: 10px 16px;
+        width: auto;
+        height: auto;
+        line-height: normal;
+    }
+
+    .btn-add-cart:hover {
+        color: #444;
+        text-decoration: none;
+        background-color: #ffe48c;
+    }
+
+    .card-img {
+        width: 100%;
+        border-radius: 20px;
+        margin-bottom: 20px;
+    }
+
+    .title {
+        font-size: 32px;
+        font-weight: 800;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .text {
+        color: #666;
+        margin-bottom: 12px;
+    }
+    
+
+    .description {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        line-height: 1.6;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 12px;
+        margin-top: 20px;
+    }
+
+    .textare {
+        width: 100%;
+        min-height: 120px;
+        border: 2px solid #ffe8a3;
+        border-radius: 14px;
+        padding: 14px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        resize: none;
+    }
+
+    .textare:focus {
+        outline: none;
+        border-color: #ffc8dd;
+    }
+
+    .detail-section {
+        background-color: #fffaf0;
+        padding: 16px;
+        margin-bottom: 20px;
+        border-radius: 16px;
+        border: 1px solid #ffe8a3;
+    }
+
+    .detail-divider {
+        border: none;
+        border-top: 2px solid #ffe8a3;
+        margin: 20px 0;
+    }
+</style>
+<div class="detail-page">
+    <div class="detail-card">
+        {% if ad_details.image %}
+        <img src="{{ ad_details.image.url }}" class="card-img" alt={{ ad_details.image }}>
+        {% endif %}
+        <h1 class="title">{{ ad_details.name }}</h1>
+        <p class="description">{{ ad_details.description }}</p>
+        <p class="price">Pret:{{ ad_details.price }} RON</p>
+        <hr class="detail-divider">
+        <div class="detail-section">
+            <p class="text">Oras: {{ ad_details.city }}</p>
+            <p class="text">Data postarii: {{ ad_details.post_date }}</p>
+            <p class="text">Numar telefon: {{ ad_details.phone_number }}</p>
+        </div>
+        <div class="buttons">
+            <form method="post" action="{% url 'send_message' ad_details.id %}">
+                {% csrf_token %}
+                <textarea class="textare" placeholder="Scrie un mesaj.."></textarea>
+                <button class="message" type="submit">Trimite mesajul</button>
+            </form>
+            <a href="{% url 'add_to_cart' ad_details.id %}" class="btn-add-cart">Adauga in cos</a>
+        </div>
+    </div>
+</div>
 {% endblock %}
