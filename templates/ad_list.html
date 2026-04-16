@@ -3,6 +3,9 @@
 {% block content %}
 
 <style>
+    .body{
+        background: linear-gradient(135deg, #eedc95, rgb(238, 182, 192, 0.4));
+    }
     .ads-title {
         text-align: center;
         font-size: 36px;
@@ -44,6 +47,8 @@
     display: flex;
     flex-direction: column;
     flex: 1;
+    background: linear-gradient(135deg, #eedc95, rgb(238, 182, 192));
+        
     }
 
     .card-title {
@@ -59,7 +64,7 @@
 
     .card-price {
         display: inline-block;
-        background: #fff1b8;
+        
         color: #444;
         padding: 6px 12px;
         border-radius: 12px;
@@ -105,6 +110,7 @@
         }
     }
 </style>
+<div class="body">
 <h1 class="ads-title">Anunturi</h1>
 <div class="ads-container">
     {% for ad in ads %}
@@ -127,5 +133,6 @@
     </div>
 
 {% endfor %}
+</div>
 </div>
 {% endblock %}
