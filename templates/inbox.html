@@ -1,11 +1,79 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Inbox</h1>
-    {% for message in recived_messages %}
-    	{{ message.sender }}
-        {{ message.message }}
-        {{ message.date }}
-        {{ message.ad_connection }}
-    {% endfor %}
+<style>
+    .inbox-page{
+        background-color: #fffdf8;
+        padding: 40px;
+        min-height: 100vh;
+    }
+.inbox-title {
+        font-size: 32px;
+        font-weight: 800;
+        color: #333;
+        text-align: center;
+    margin-bottom: 40px;
+    }
 
+    .messages-container {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+.message-card {
+        background-color: rgba(255, 241, 184, 0.35);
+        border: 1px solid #ffe8a3;
+        border-radius: 18px;
+        padding: 20px;
+        transition: 0.2s ease;
+    }
+
+    .message-card:hover {
+        background-color: rgba(255, 214, 231, 0.35);
+        border-color: #ffc8dd;
+    }
+.messages-sender {
+        font-size: 18px;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 8px;
+    }
+
+.messages-text {
+        background-color: rgba(255, 214, 231, 0.25);
+    border-radius: 12px;
+    padding: 12px;
+    color: #444;
+    margin-bottom: 15px;
+    }
+
+    .message-details {
+        color: #777;
+    font-size: 14px;
+    margin-bottom: 6px;
+    }
+</style>
+
+<div class="inbox-page">
+<h1 class="inbox-title">Inbox</h1>
+
+<div class="messages-container">
+    {% for message in recived_messages %}
+    <div class="message-card">
+        <div class="messages-sender">
+    	{{ message.sender }}
+        </div>
+        </div>
+        <div class="messages-text">
+        {{ message.message }}
+        </div>
+        <div class="messages-details">
+        {{ message.date }}
+        </div>
+        <div class="messages-details">
+        {{ message.ad_connection }}
+        </div>
+        </div>
+    {% endfor %}
+</div>
+</div>
 {% endblock %}
