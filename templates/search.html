@@ -6,7 +6,7 @@
 <div class="card" style="width: 18rem;">
 
     {% if ad.image %}
-    <img src="{{ ad.image.url }}" class="card-img-top" alt={{ ad.image }}>
+    <img src="{{ ad.image.url }}" class="card-img-top" alt="{{ ad.image }}">
     {% endif %}
     <div class="card-body">
         <h5 class="card-title">{{ ad.name }}</h5>
