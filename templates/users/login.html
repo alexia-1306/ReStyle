@@ -1,10 +1,50 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<style>
+    h1 {
+        text-align: center;
+        font-family: Arial, sans-serif;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    form {
+        max-width: 420px;
+        margin: 0 auto;
+        padding: 25px;
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    input,
+    select,
+    textarea {
+        padding: 12px;
+        border-radius: 10px;
+    }
+
+    .btn {
+        background: linear-gradient(135deg, #ffe066, pink);
+        border-radius: 10px;
+        font-weight: bold;
+    }
+
+    .btn:hover {
+        transform: scale(1.03);
+        opacity: 0.9;
+    }
+
+    form p {
+        display: flex;
+        flex-direction: column;
+    }
+</style>
 <h1>Autentificare:</h1>
-    <form method="post">
+<form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Intra in cont</button>
-    </form>
+    <button class="btn" type="submit">Intra in cont</button>
+</form>
 {% endblock %}
