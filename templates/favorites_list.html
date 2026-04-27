@@ -45,7 +45,7 @@
         flex-direction: column;
         flex: 1;
         background: linear-gradient(135deg, #eedc95, rgb(238, 182, 192));
-        
+
     }
 
     .card-title {
@@ -110,28 +110,26 @@
     }
 </style>
 <div class="body">
-<div class="ads-title">
-<h1>Anunturi</h1>
-</div>
-<div class="ads-container">
-    {% for fav in favs %}
-    <div class="card" style="width: 18rem;">
-
-        {% if fav.ad.image %}
-        <img src="{{ fav.ad.image.url }}" class="card-img-top" alt={{ fav.ad.image }}>
-        {% endif %}
-        <div class="card-body">
-            <h5 class="card-title">{{ fav.ad.name }}</h5>
-            <p class="card-price">{{ fav.ad.price }} RON</p>
-            <p class="card-text">{{ fav.ad.city}}</p>
-            {% for fav in favs %}
-            {% if fav.ad %}
-            <a href="{% url 'ad_detail' fav.ad.id %}" class="btn-details">Vezi anuntul</a>
-            {% endif %}
-            {% endfor %}
-        </div>
+    <div class="ads-title">
+        <h1>Anunturi</h1>
     </div>
-    {% endfor %}
-</div>
+    <div class="ads-container">
+        {% for fav in favs %}
+        <div class="card" style="width: 18rem;">
+
+            {% if fav.ad.image %}
+            <img src="{{ fav.ad.image.url }}" class="card-img-top" alt={{ fav.ad.image }}>
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ fav.ad.name }}</h5>
+                <p class="card-price">{{ fav.ad.price }} RON</p>
+                <p class="card-text">{{ fav.ad.city}}</p>
+                {% if fav.ad %}
+                <a href="{% url 'ad_detail' fav.ad.id %}" class="btn-details">Vezi anuntul</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
