@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 <style>
-    .cart-title{
-         text-align: center;
+    .cart-title {
+        text-align: center;
         font-size: 36px;
         font-weight: 800;
         margin: 30px 0;
         color: #444;
     }
 
-    .card{
+    .card {
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -21,13 +21,13 @@
         width: 500px;
     }
 
-    .card-title{
+    .card-title {
         font-size: 22px;
         font-weight: 700;
         color: #333;
     }
 
-    .card-text{
+    .card-text {
         display: inline-block;
         background: #fff1b8;
         color: #444;
@@ -37,45 +37,45 @@
         margin-bottom: 12px;
     }
 
-    .btn-delete{
-    padding: 10px 20px;
-    background: linear-gradient(135deg, #ffe066, pink);
-    border: none;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    margin: 10px 5px;
-    text-decoration: none;
-    color: #333
+    .btn-delete {
+        padding: 10px 20px;
+        background: linear-gradient(135deg, #ffe066, pink);
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+        margin: 10px 5px;
+        text-decoration: none;
+        color: #333
     }
 
-    .btn-finish{
-    padding: 10px 20px;
-    background: linear-gradient(135deg, #ffe066, pink);
-    border: none;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    margin: 10px 5px;
-    text-decoration: none;
-    color:#333
+    .btn-finish {
+        padding: 10px 20px;
+        background: linear-gradient(135deg, #ffe066, pink);
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+        margin: 10px 5px;
+        text-decoration: none;
+        color: #333
     }
 </style>
 <div class="cart-title">
     <h1>Produse adaugate</h1>
+</div>
+{% for item in items %}
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ item.product.name }}</h5>
+        <p class="card-text">{{ item.product.price }} RON</p>
+        <p>{{ item.quantity }}</p>
+        <a href="{% url 'remove_from_cart' item.product.id %}" class="btn-delete">Elimina din cos</a>
+        <a href="{% url 'checkout' %}" class="btn-finish">Finalizeaza comanda</a>
     </div>
-    {% for item in items %}
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{{ item.product.name }}</h5>
-                <p class="card-text">{{ item.product.price }} RON</p>
-                <p>{{ item.quantity }}</p>
-                <a href="{% url 'remove_from_cart' item.product.id %}" class="btn-delete">Elimina din cos</a>
-                <a href="{% url 'checkout' %}" class="btn-finish">Finalizeaza comanda</a>
-            </div>
-        </div>
-    {% endfor %}
-    {{ cart.total }}
+</div>
+{% endfor %}
+{{ cart.total }}
 {% endblock %}
