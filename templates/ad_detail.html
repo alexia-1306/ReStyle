@@ -146,7 +146,7 @@
         <div class="buttons">
             <form method="post" action="{% url 'send_message' ad_details.id %}">
                 {% csrf_token %}
-                <textarea class="textare" placeholder="Scrie un mesaj.."></textarea>
+                <textarea class="textare" name = "message" placeholder="Scrie un mesaj.."></textarea>
                 <button class="message" type="submit">Trimite mesajul</button>
             </form>
             <a href="{% url 'add_to_cart' ad_details.id %}" class="btn-add-cart">Adauga in cos</a>
