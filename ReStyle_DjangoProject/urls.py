@@ -30,8 +30,8 @@ def home(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("users/", include("users.urls")),
-    path("", home, name='home') ,#leaga ruta de functia home
     path('', include('products.urls')),
+    path("", home, name='home') ,#leaga ruta de functia home
 ]
 
 if settings.DEBUG:
